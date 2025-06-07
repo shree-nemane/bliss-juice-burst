@@ -4,43 +4,35 @@ import FloatingFruit from "./FloatingFruit";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 lg:px-12 overflow-hidden">
-      {/* Floating fruit decorations */}
+    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-gradient-to-br from-orange-50 to-purple-50">
       <FloatingFruit />
       
-      {/* Main hero content */}
-      <div className="relative z-10 text-center max-w-6xl mx-auto">
-        <div className="animate-fade-in">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-green-500 mb-6 leading-tight">
+      <div className="relative z-10 text-center max-w-4xl mx-auto">
+        <div className="group cursor-pointer">
+          <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-purple-500 to-green-500 mb-6 transition-all duration-500 group-hover:scale-105">
             Juicy
             <br />
-            <span className="text-5xl md:text-7xl lg:text-8xl">Bliss</span>
+            <span className="text-6xl md:text-8xl">Bliss</span>
           </h1>
           
-          <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 mb-8 max-w-3xl mx-auto font-medium">
-            Pure fruit. Pure joy. Pure <em className="text-orange-500 font-bold">bliss</em>.
+          <p className="text-2xl md:text-3xl text-gray-700 mb-8 font-medium transition-all duration-300 group-hover:text-purple-600">
+            Pure fruit. Pure <em className="text-orange-500">bliss</em>.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button className="bg-gradient-to-r from-orange-400 to-pink-500 text-white px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
-              Taste the Rainbow
-            </button>
-            <button className="border-2 border-green-400 text-green-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-green-50 transition-all duration-300">
-              Our Story
-            </button>
-          </div>
         </div>
         
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ArrowDown className="w-8 h-8 text-gray-400" />
+        <div className="flex gap-4 justify-center mb-12">
+          <button className="bg-gradient-to-r from-orange-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:scale-110 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+            Taste Now
+          </button>
+          <button className="border-2 border-green-500 text-green-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-green-500 hover:text-white transition-all duration-300 hover:scale-105">
+            Our Story
+          </button>
+        </div>
+        
+        <div className="animate-bounce">
+          <ArrowDown className="w-8 h-8 text-purple-400 mx-auto" />
         </div>
       </div>
-      
-      {/* Background decorative elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-yellow-300 to-orange-400 rounded-full opacity-20 blur-xl"></div>
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-green-300 to-blue-400 rounded-full opacity-20 blur-xl"></div>
-      <div className="absolute top-1/2 left-20 w-24 h-24 bg-gradient-to-r from-pink-300 to-purple-400 rounded-full opacity-20 blur-xl"></div>
     </section>
   );
 };
