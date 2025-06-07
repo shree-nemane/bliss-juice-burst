@@ -1,63 +1,43 @@
 
 import { useState } from "react";
-import { Leaf, TreeDeciduous, TreePalm } from "lucide-react";
+import { ArrowDown, X } from "lucide-react";
 
 const Hero = () => {
   const [activeSection, setActiveSection] = useState("main");
   const [selectedFlavor, setSelectedFlavor] = useState(null);
 
   const flavors = [
-    { 
-      id: "green", 
-      name: "GREEN VITALITY", 
-      color: "from-emerald-600 to-green-700", 
-      bg: "bg-green-50", 
-      icon: <Leaf className="w-12 h-12 text-green-700" />,
-      ingredients: "Kale • Spinach • Apple • Lemon"
-    },
-    { 
-      id: "citrus", 
-      name: "CITRUS GLOW", 
-      color: "from-orange-500 to-amber-600", 
-      bg: "bg-orange-50", 
-      icon: <TreeDeciduous className="w-12 h-12 text-orange-700" />,
-      ingredients: "Orange • Grapefruit • Ginger • Turmeric"
-    },
-    { 
-      id: "berry", 
-      name: "BERRY EARTH", 
-      color: "from-purple-600 to-red-700", 
-      bg: "bg-purple-50", 
-      icon: <TreePalm className="w-12 h-12 text-purple-700" />,
-      ingredients: "Blueberry • Blackberry • Beet • Mint"
-    }
+    { id: "rage", name: "RAGE", color: "from-red-600 to-orange-500", bg: "bg-red-900/20" },
+    { id: "venom", name: "VENOM", color: "from-purple-600 to-pink-500", bg: "bg-purple-900/20" },
+    { id: "strike", name: "STRIKE", color: "from-green-500 to-emerald-400", bg: "bg-green-900/20" }
+  ];
+
+  const testimonials = [
+    "PURE LIQUID FIRE - Marcus",
+    "UNLEASHED MY BEAST - Sarah", 
+    "IMPOSSIBLE TO RESIST - Alex"
   ];
 
   return (
-    <div className="relative h-screen w-screen bg-gradient-to-br from-amber-50 via-green-50 to-orange-50 text-stone-800 overflow-hidden">
-      {/* Organic Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23059669" fill-opacity="0.4"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+    <div className="relative h-screen w-screen bg-black text-white overflow-hidden">
+      {/* Geometric Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-orange-600/20 to-transparent transform rotate-45 translate-x-48 -translate-y-48"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-600/20 to-transparent transform -rotate-45 -translate-x-48 translate-y-48"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-green-600/10 to-transparent transform -translate-x-32 -translate-y-32 rotate-12"></div>
       </div>
 
-      {/* Natural Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-16 w-24 h-24 rounded-full bg-green-200 opacity-30 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-32 h-32 rounded-full bg-amber-200 opacity-25" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-32 left-24 w-20 h-20 rounded-full bg-orange-200 opacity-35 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      {/* Navigation */}
+      {/* Navigation Dots */}
       <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-30">
         <div className="flex flex-col gap-4">
-          {["main", "flavors", "story"].map((section) => (
+          {["main", "flavors", "about"].map((section) => (
             <button
               key={section}
               onClick={() => setActiveSection(section)}
-              className={`w-3 h-8 rounded-full transform transition-all duration-700 ${
+              className={`w-3 h-3 border-2 transform transition-all duration-300 hover:scale-150 ${
                 activeSection === section 
-                  ? 'bg-green-600 shadow-lg' 
-                  : 'bg-stone-300 hover:bg-green-400'
+                  ? 'bg-orange-500 border-orange-500 rotate-45' 
+                  : 'border-white hover:border-orange-500'
               }`}
             />
           ))}
@@ -66,59 +46,45 @@ const Hero = () => {
 
       {/* Main Section */}
       {activeSection === "main" && (
-        <div className="relative z-20 h-full flex items-center justify-center px-8">
-          <div className="text-center max-w-4xl">
-            <div className="mb-8">
-              <div className="flex justify-center mb-6">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center shadow-xl">
-                  <Leaf className="w-12 h-12 text-cream" />
-                </div>
-              </div>
-              
-              <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-4 text-stone-800 leading-tight">
-                <span className="block font-serif">Pure</span>
-                <span className="block text-green-700 font-serif">Nature</span>
+        <div className="relative z-20 h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="relative group cursor-pointer">
+              <h1 className="text-8xl md:text-9xl font-black tracking-tighter mb-4">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-purple-500 to-green-500 
+                              drop-shadow-[0_0_30px_rgba(255,165,0,0.5)] group-hover:drop-shadow-[0_0_50px_rgba(255,165,0,0.8)] 
+                              transition-all duration-500">
+                  JUICY
+                </span>
+                <br />
+                <span className="text-white group-hover:text-red-500 transition-colors duration-500">
+                  BLISS
+                </span>
               </h1>
               
-              <div className="w-32 h-1 bg-gradient-to-r from-green-600 to-amber-600 mx-auto mb-6 rounded-full"></div>
+              <div className="absolute -inset-10 bg-gradient-to-r from-orange-500/20 via-purple-500/20 to-green-500/20 
+                            blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             </div>
             
-            <p className="text-xl text-stone-600 mb-12 font-medium leading-relaxed">
-              Cold-pressed from <span className="text-green-700 font-semibold">organic farms</span> to your table
-              <br />
-              <span className="text-amber-700 italic">No preservatives. No shortcuts. Just pure goodness.</span>
+            <p className="text-2xl font-bold text-gray-300 mb-8 tracking-wide">
+              LIQUID <span className="text-orange-500">REBELLION</span>
             </p>
             
-            <div className="flex gap-6 justify-center mb-16">
+            <div className="flex gap-6 justify-center">
               <button 
                 onClick={() => setActiveSection("flavors")}
-                className="bg-green-700 text-cream px-8 py-4 rounded-full font-semibold text-lg 
-                         transform hover:scale-105 transition-all duration-500 
-                         shadow-lg hover:shadow-xl hover:bg-green-800">
-                Taste Earth's Bounty
+                className="bg-gradient-to-r from-orange-600 to-red-600 px-8 py-4 font-black text-lg 
+                         transform hover:scale-110 hover:rotate-1 transition-all duration-300 
+                         shadow-[0_0_20px_rgba(255,165,0,0.5)] hover:shadow-[0_0_30px_rgba(255,165,0,0.8)]
+                         border-2 border-orange-500/50 hover:border-orange-400">
+                UNLEASH
               </button>
               <button 
-                onClick={() => setActiveSection("story")}
-                className="bg-transparent border-2 border-green-700 text-green-700 px-8 py-4 rounded-full font-semibold text-lg 
-                         hover:bg-green-50 transform hover:scale-105 
-                         transition-all duration-500">
-                Our Story
+                onClick={() => setActiveSection("about")}
+                className="border-2 border-green-500 px-8 py-4 font-black text-lg text-green-400 
+                         hover:bg-green-500 hover:text-black transform hover:scale-110 hover:-rotate-1 
+                         transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,255,0,0.5)]">
+                ORIGINS
               </button>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-8 max-w-md mx-auto text-center">
-              <div className="group cursor-pointer">
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">🌱</div>
-                <span className="text-sm text-stone-600 font-medium">Organic</span>
-              </div>
-              <div className="group cursor-pointer">
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">❄️</div>
-                <span className="text-sm text-stone-600 font-medium">Cold-Pressed</span>
-              </div>
-              <div className="group cursor-pointer">
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">🌍</div>
-                <span className="text-sm text-stone-600 font-medium">Sustainable</span>
-              </div>
             </div>
           </div>
         </div>
@@ -126,45 +92,34 @@ const Hero = () => {
 
       {/* Flavors Section */}
       {activeSection === "flavors" && (
-        <div className="relative z-20 h-full flex items-center justify-center p-8">
+        <div className="relative z-20 h-full flex items-center justify-center">
           <div className="text-center max-w-6xl">
-            <h2 className="text-5xl font-bold mb-4 text-stone-800 font-serif">
-              Nature's Palette
+            <h2 className="text-6xl font-black mb-12 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">
+              CHOOSE YOUR WEAPON
             </h2>
-            <p className="text-stone-600 mb-12 text-lg">Handcrafted blends from premium organic ingredients</p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-3 gap-8">
               {flavors.map((flavor) => (
                 <div
                   key={flavor.id}
                   onClick={() => setSelectedFlavor(selectedFlavor === flavor.id ? null : flavor.id)}
-                  className={`${flavor.bg} rounded-2xl p-8 cursor-pointer group 
-                            transform transition-all duration-700 hover:scale-105
-                            shadow-lg hover:shadow-xl border border-stone-200
-                            ${selectedFlavor === flavor.id ? 'scale-105 ring-2 ring-green-600' : ''}`}
+                  className={`${flavor.bg} border-2 border-gray-600 p-8 cursor-pointer group 
+                            transform transition-all duration-500 hover:scale-110 hover:-rotate-2
+                            ${selectedFlavor === flavor.id ? 'scale-110 -rotate-2 border-white' : ''}`}
                 >
-                  <div className="mb-6 flex justify-center group-hover:scale-110 transition-transform duration-500">
-                    {flavor.icon}
+                  <div className={`w-20 h-32 mx-auto mb-6 bg-gradient-to-b ${flavor.color} 
+                                 transform group-hover:rotate-12 transition-transform duration-500
+                                 shadow-[0_0_20px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]`}>
+                    <div className="absolute inset-2 bg-white bg-opacity-20"></div>
                   </div>
                   
-                  <div className={`w-12 h-20 mx-auto mb-6 rounded-xl bg-gradient-to-b ${flavor.color} 
-                                 transform group-hover:rotate-3 transition-transform duration-500
-                                 shadow-md relative`}>
-                    <div className="absolute inset-1 bg-white bg-opacity-30 rounded-lg"></div>
-                    <div className="absolute top-1 left-1 right-1 h-2 bg-white bg-opacity-50 rounded-t-lg"></div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-stone-700 mb-2 font-serif">
+                  <h3 className="text-3xl font-black text-white group-hover:text-orange-400 transition-colors duration-300">
                     {flavor.name}
                   </h3>
                   
-                  <p className="text-sm text-stone-500 italic">
-                    {flavor.ingredients}
-                  </p>
-                  
                   {selectedFlavor === flavor.id && (
-                    <div className="mt-4 text-green-700 font-medium text-sm border-t border-stone-200 pt-4">
-                      ✓ Certified Organic • Cold-Pressed • Farm Fresh
+                    <div className="mt-4 text-gray-300 font-bold animate-fade-in">
+                      PURE INTENSITY
                     </div>
                   )}
                 </div>
@@ -174,63 +129,64 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Story Section */}
-      {activeSection === "story" && (
-        <div className="relative z-20 h-full flex items-center justify-center p-8">
+      {/* About Section */}
+      {activeSection === "about" && (
+        <div className="relative z-20 h-full flex items-center justify-center">
           <div className="text-center max-w-4xl">
-            <div className="mb-8">
-              <TreeDeciduous className="mx-auto w-16 h-16 text-green-700 mb-4" />
-              <h2 className="text-5xl font-bold mb-6 text-stone-800 font-serif">
-                Rooted in Purpose
-              </h2>
-            </div>
+            <h2 className="text-6xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-green-500">
+              NO MERCY
+            </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500">
-                <div className="text-4xl mb-4">🚜</div>
-                <h3 className="text-2xl font-bold text-green-700 mb-4 font-serif">Farm Partners</h3>
-                <p className="text-stone-600 leading-relaxed">
-                  We work directly with organic farmers who share our commitment to sustainable, 
-                  chemical-free agriculture. Every bottle supports regenerative farming practices.
-                </p>
+            <div className="grid grid-cols-2 gap-12">
+              <div className="text-left">
+                <div className="border-l-4 border-orange-500 pl-6">
+                  <h3 className="text-2xl font-black text-orange-400 mb-4">PURE POWER</h3>
+                  <p className="text-gray-300 font-bold">
+                    Cold-pressed fury in every bottle. No additives. No weakness. Only strength.
+                  </p>
+                </div>
               </div>
               
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500">
-                <div className="text-4xl mb-4">🌿</div>
-                <h3 className="text-2xl font-bold text-amber-700 mb-4 font-serif">Earth First</h3>
-                <p className="text-stone-600 leading-relaxed">
-                  From compostable packaging to carbon-neutral delivery, 
-                  every choice we make considers our planet's wellbeing first.
-                </p>
+              <div className="text-left">
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <h3 className="text-2xl font-black text-purple-400 mb-4">TESTIMONIALS</h3>
+                  <div className="space-y-2">
+                    {testimonials.map((testimonial, index) => (
+                      <p key={index} className="text-gray-300 font-bold text-sm">
+                        {testimonial}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
             
-            <div className="bg-gradient-to-r from-green-700 to-amber-700 text-cream rounded-2xl p-8 shadow-xl">
-              <h4 className="text-2xl font-bold mb-4 font-serif">"Nourishing people, nurturing earth"</h4>
-              <p className="text-green-100 italic">
-                Our mission goes beyond juice. We're cultivating a community that values 
-                health, sustainability, and the pure goodness that nature provides.
-              </p>
+            <div className="mt-12">
+              <button className="bg-gradient-to-r from-purple-600 to-green-600 px-12 py-6 font-black text-2xl 
+                               transform hover:scale-110 transition-all duration-300 
+                               shadow-[0_0_30px_rgba(128,0,128,0.5)] hover:shadow-[0_0_50px_rgba(128,0,128,0.8)]
+                               border-2 border-purple-500/50 hover:border-purple-400">
+                DOMINATE NOW
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Back Button */}
+      {/* Close/Back Button */}
       {activeSection !== "main" && (
         <button
           onClick={() => setActiveSection("main")}
-          className="absolute top-8 right-8 z-30 bg-white text-green-700 p-3 rounded-full
-                   hover:bg-green-50 transform hover:scale-110 transition-all duration-500
-                   shadow-lg border border-green-200"
+          className="absolute top-8 right-8 z-30 text-white hover:text-orange-500 
+                   transform hover:scale-125 hover:rotate-90 transition-all duration-300"
         >
-          <Leaf className="w-6 h-6" />
+          <X size={32} />
         </button>
       )}
 
-      {/* Floating Element */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-green-600">
-        <Leaf className="w-8 h-8 animate-pulse" />
+      {/* Subtle animated elements */}
+      <div className="absolute bottom-10 right-10 text-orange-500/30 animate-pulse">
+        <ArrowDown size={24} className="transform rotate-45" />
       </div>
     </div>
   );
